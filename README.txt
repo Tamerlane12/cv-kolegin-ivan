@@ -1,1 +1,1 @@
-Native browser PDF viewer for CV KOLEGIN IVAN. Replace index.html in GitHub; keep the existing PDF.
+GitHub-ready package. PDF is ~6.3 MB and mobile WebP is ~5.2 MB. Desktop uses PDF; mobile uses high-quality WebP. PDF download available.
