@@ -1,1 +1,1 @@
-Fixed PDF.js viewer for CV KOLEGIN IVAN.
+Native browser PDF viewer for CV KOLEGIN IVAN. Replace index.html in GitHub; keep the existing PDF.
