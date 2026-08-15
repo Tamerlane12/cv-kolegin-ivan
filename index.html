@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="googlebot" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#111111">
+<title>CV — Kolegin Ivan</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#111}
+body{font-family:Arial,sans-serif;overflow-x:hidden}
+.toolbar{position:fixed;z-index:20;top:max(10px,env(safe-area-inset-top));right:10px;display:flex;gap:7px;opacity:.15;transition:opacity .2s}
+.toolbar:hover,.toolbar:focus-within{opacity:1}
+.btn{appearance:none;border:1px solid rgba(255,255,255,.35);background:rgba(15,15,15,.82);color:#fff;padding:9px 12px;border-radius:9px;text-decoration:none;font-size:13px;line-height:1;backdrop-filter:blur(8px);cursor:pointer}
+.viewer{width:100%;display:flex;justify-content:center}
+.cv{display:block;width:100%;max-width:1200px;height:auto;margin:0 auto;background:#fff;content-visibility:auto}
+.hint{position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:10;color:rgba(255,255,255,.7);font-size:11px;background:rgba(0,0,0,.45);padding:6px 9px;border-radius:8px;pointer-events:none;opacity:.7}
+@media(max-width:700px){
+ .toolbar{top:max(8px,env(safe-area-inset-top));right:8px;opacity:.75}
+ .btn{font-size:12px;padding:9px 10px}
+ .cv{width:100vw;max-width:none}
+ .hint{font-size:10px;bottom:max(8px,env(safe-area-inset-bottom))}
+}
+</style>
+</head>
+<body>
+<div class="toolbar">
+<a class="btn" href="CV_KOLEGIN_IVAN.pdf" download>↓ Скачать CV</a>
+<button class="btn" id="fs">⛶ Полный экран</button>
+</div>
+<main class="viewer">
+<picture>
+ <source media="(max-width:700px)" srcset="CV_KOLEGIN_IVAN_650.webp">
+ <img class="cv" src="CV_KOLEGIN_IVAN_1200.webp" srcset="CV_KOLEGIN_IVAN_650.webp 650w, CV_KOLEGIN_IVAN_1200.webp 1200w" sizes="(max-width: 700px) 100vw, min(1200px, 100vw)" width="1200" height="6263" alt="CV Kolegin Ivan" fetchpriority="high" decoding="async">
+</picture>
+</main>
+<div class="hint">Прокручивайте вниз</div>
+<script>
+document.getElementById('fs').addEventListener('click', async()=>{
+ try{ if(!document.fullscreenElement) await document.documentElement.requestFullscreen(); else await document.exitFullscreen(); }catch(e){}
+});
+</script>
+</body>
+</html>
