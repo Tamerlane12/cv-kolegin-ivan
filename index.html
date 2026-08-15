@@ -2,33 +2,52 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="googlebot" content="noindex,nofollow,noarchive">
 <title>CV — Kolegin Ivan</title>
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;background:#202020;font-family:Arial,sans-serif}
-body{overflow:hidden}
-.pdf{display:block;width:100vw;height:100vh;border:0;background:#fff}
-.mobile{display:none;width:100vw;height:auto}
-.bar{position:fixed;z-index:20;right:10px;top:10px;display:flex;gap:7px;opacity:.25;transition:.2s}
-.bar:hover{opacity:1}
-.btn{color:#fff;background:rgba(20,20,20,.9);border:1px solid #777;border-radius:8px;padding:9px 12px;font-size:13px;text-decoration:none;cursor:pointer}
-@media(max-width:700px){
- body{background:#111;overflow-y:auto}
- .pdf{display:none}
- .mobile{display:block}
- .bar{top:max(8px,env(safe-area-inset-top));right:8px}
- .btn{font-size:12px;padding:8px 10px}
-}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#202020;font-family:Arial,sans-serif}
+body{overflow:hidden}.toolbar{position:fixed;z-index:20;right:10px;top:10px;display:flex;align-items:center;gap:6px;opacity:.32;transition:.2s}.toolbar:hover{opacity:1}
+.lang{display:flex;gap:3px;padding:3px;border:1px solid #666;border-radius:10px;background:rgba(15,15,15,.92);backdrop-filter:blur(8px)}
+button,a{border:1px solid #777;border-radius:7px;background:rgba(15,15,15,.95);color:#fff;padding:8px 10px;font-size:12px;text-decoration:none;cursor:pointer}
+.lang button{border-color:transparent;padding:6px 8px}.lang button.active{background:#fff;color:#111}
+#pdf{width:100vw;height:100vh;border:0;background:#fff;display:block}
+#mobile{display:none;width:100vw;height:auto}
+@media(max-width:700px){body{overflow-y:auto;background:#111}#pdf{display:none}#mobile{display:block}.toolbar{top:max(8px,env(safe-area-inset-top));right:8px}button,a{font-size:11px;padding:7px 9px}.lang button{padding:5px 7px}}
 </style>
 </head>
 <body>
-<div class="bar">
-<a class="btn" href="./CV_KOLEGIN_IVAN.pdf" download>↓ Скачать PDF</a>
-<button class="btn" onclick="document.documentElement.requestFullscreen?.()">⛶ Экран</button>
+<div class="toolbar">
+<div class="lang">
+<button data-lang="RU">RU</button>
+<button data-lang="ENG">ENG</button>
+<button data-lang="UZB">UZB</button>
 </div>
-<iframe class="pdf" src="./CV_KOLEGIN_IVAN.pdf#view=FitH&toolbar=0&navpanes=0&scrollbar=1" title="CV KOLEGIN IVAN"></iframe>
-<img class="mobile" src="./CV_KOLEGIN_IVAN_MOBILE.webp" alt="CV KOLEGIN IVAN">
+<a id="download" href="./CV_KOLEGIN_IVAN_RU.pdf" download>↓ PDF</a>
+<button id="full">⛶</button>
+</div>
+<iframe id="pdf" title="CV"></iframe>
+<img id="mobile" alt="CV">
+<script>
+const files={
+ RU:{pdf:'CV_KOLEGIN_IVAN_RU.pdf', webp:'CV_KOLEGIN_IVAN_RU_MOBILE.webp'},
+ ENG:{pdf:'CV_KOLEGIN_IVAN_ENG.pdf', webp:'CV_KOLEGIN_IVAN_ENG_MOBILE.webp'},
+ UZB:{pdf:'CV_KOLEGIN_IVAN_UZB.pdf', webp:'CV_KOLEGIN_IVAN_UZB_MOBILE.webp'}
+};
+const pdf=document.getElementById('pdf'), img=document.getElementById('mobile'), dl=document.getElementById('download');
+const btns=[...document.querySelectorAll('.lang button')];
+function setLang(lang){
+ const f=files[lang];
+ pdf.src='./'+f.pdf+'#view=FitH&toolbar=0&navpanes=0&scrollbar=1';
+ img.src='./'+f.webp;
+ dl.href='./'+f.pdf;
+ btns.forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+ localStorage.setItem('cv_lang',lang);
+}
+btns.forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+document.getElementById('full').onclick=()=>document.documentElement.requestFullscreen?.();
+setLang(localStorage.getItem('cv_lang')||'RU');
+</script>
 </body>
 </html>

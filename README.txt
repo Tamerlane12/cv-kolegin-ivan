@@ -1,1 +1,1 @@
-GitHub-ready package. PDF is ~6.3 MB and mobile WebP is ~5.2 MB. Desktop uses PDF; mobile uses high-quality WebP. PDF download available.
+3-language GitHub/Vercel CV site: RU / ENG / UZB. Desktop loads compressed PDFs; mobile loads high-quality WebP. Buttons switch language without reload and remember the selection.
